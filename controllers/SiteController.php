@@ -2,13 +2,14 @@
 
 namespace app\controllers;
 
-use app\models\UserForm;
+
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\UserForm;
 
 class SiteController extends Controller
 {
@@ -135,14 +136,16 @@ class SiteController extends Controller
     }
 
 
-    public function actionUserForm(){
+    public function actionUser(){
         // Add model form
-        $model = new UserForm();
+        $model = new UserForm;
         // Check model has been submitted
-        if($model->load(Yii::$app->request->post() && $model->validate())){
+        if($model->load(Yii::$app->request->post()) && $model->validate()){
             // lets write this later
-        }else{
-
+            Yii::$app->session->setFlash('success', 'You have entered the data correctly.');
         }
+
+        return $this->render('userForm', ['model'=>$model]);
+
     }
 }
