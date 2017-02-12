@@ -13,7 +13,7 @@ use yii\widgets\ActiveForm;
 <?php
     if(Yii::$app->session->getFlash('success'))
     {
-        echo Yii::$app->session->getFlash('success');
+        echo "<div class='alert alert-success'>" . Yii::$app->session->getFlash('success') . "</div>";
     }
 ?>
 
